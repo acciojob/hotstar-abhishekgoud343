@@ -9,15 +9,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProductionHouseService {
-
     @Autowired
     ProductionHouseRepository productionHouseRepository;
 
-    public Integer addProductionHouseToDb(ProductionHouseEntryDto productionHouseEntryDto){
+    public Integer addProductionHouseToDb(ProductionHouseEntryDto productionHouseEntryDto) {
+        ProductionHouse productionHouse = new ProductionHouse();
+        productionHouse.setName(productionHouseEntryDto.getName());
+        productionHouse.setRatings(0);
 
-        return  null;
+        return productionHouseRepository.save(productionHouse).getId();
     }
-
-
-
 }
