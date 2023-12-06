@@ -17,7 +17,7 @@ public class WebSeriesService {
     @Autowired
     ProductionHouseRepository productionHouseRepository;
 
-    public Integer addWebSeries(WebSeriesEntryDto webSeriesEntryDto) throws  Exception {
+    public Integer addWebSeries(WebSeriesEntryDto webSeriesEntryDto) throws Exception {
         //Add a webSeries to the database and update the ratings of the productionHouse
         //In case the seriesName is already present in the Db throw Exception("Series is already present")
         //use function written in Repository Layer for the same
@@ -40,8 +40,6 @@ public class WebSeriesService {
         double updatedRatingPH = (productionHouse.getRatings() * (noOfSeries - 1) + webSeries.getRating()) / noOfSeries;
         productionHouse.setRatings(updatedRatingPH);
 
-        productionHouseRepository.save(productionHouse);
-
-        return webSeries.getId();
+        return webSeriesRepository.save(webSeries).getId();
     }
 }
